@@ -5,28 +5,41 @@ import json
 
 
 class LinearModel:
-    def __init__(self, beta=0, bias=0):
+
+    def __init__(self, data):
+        self.data = data
         self.beta = 0
         self.bias = 0
 
-    @staticmethod
-    def eval_point_with_params(self, x, beta, bias):
-        return beta * x + bias
+    def eval_point_with_params(self, x):
+        return self.beta * x + self.bias
 
     def predict(self, x):
-        return self.eval_point_with_params(x, self.beta, self.bias)
+        return self.eval_point_with_params(x)
 
-    def delta_err_beta(self, loss_funct, dataset):  # numeric derivative of err with respect to beta
-        LinearModel()
-        return loss_funct(self, dataset)
+    def delta_err_beta(self, loss_funct, data):  # numeric derivative of err with respect to beta
+        return loss_funct(self, data)
 
     def delta_err_bias(self):
         pass
 
+    def calculate_beta(self):
+        nummerator = 0
+        dennominator = 0
 
-def mse(model, dataset):
+        for point in self.data:
+            nummerator += point[0] * point[1]
+            dennominator += point[0] ** 2
+
+        self.beta = nummerator / dennominator
+
+    def get_beta(self):
+        return self.beta
+
+
+def mse(model, data):
     accm = 0
-    for i in dataset:  # let dataset be a set of (x,y).
+    for i in data:  # let dataset be a set of (x,y).
         accm += (model.predict(i[0]) - i[1]) ** 2
     return accm
 
@@ -39,8 +52,8 @@ class DataSet:
         self.raw_data_file_name = csv_filename
         self.procesed_data_file_name = json_filename
 
-    def generate_dataset(self, independant_variable: str, dependant_variable: str,
-                         min_year: int = 2000, max_year: int = 2023):
+    def generate_json_dataset_from_csv(self, independant_variable: str, dependant_variable: str,
+                                  min_year: int = 2000, max_year: int = 2023):
 
         with open(self.raw_data_file_name, 'r') as csv_file, open(self.procesed_data_file_name, 'w') as json_file:
             spamreader = csv.DictReader(csv_file, delimiter=',')
@@ -57,12 +70,25 @@ class DataSet:
         with open(self.procesed_data_file_name, 'r') as json_file:
             return json.load(json_file)
 
-    def plot(self):
+    def plot(self, y_hat):
         points = self.get_dataset()
+
+        x = [0, 3703895074]
+        y = [y_hat(i) for i in x]
+
+        plt.plot(x, y)
         plt.plot(*zip(*points), '.')
         plt.show()
 
 
-dataset = DataSet("dataset/spotify-2023.csv", "dataset/points.json")
-dataset.generate_dataset("streams", "in_spotify_playlists", 2000, 2023)
-dataset.plot()
+dataset_manager = DataSet("dataset/spotify-2023.csv", "dataset/points.json")
+dataset_manager.generate_json_dataset_from_csv("streams", "in_spotify_playlists", 2000, 2023)
+
+
+model = LinearModel(dataset_manager.get_dataset())
+model.calculate_beta()
+
+# dataset_manager.plot(model.eval_point_with_params)
+
+print(model.get_beta())
+print(mse(model, dataset_manager.get_dataset()))
