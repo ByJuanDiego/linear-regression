@@ -88,7 +88,7 @@ dataset_manager.generate_json_dataset_from_csv("streams", "in_spotify_playlists"
 model = LinearModel(dataset_manager.get_dataset())
 model.calculate_beta()
 
-# dataset_manager.plot(model.eval_point_with_params)
+dataset_manager.plot(model.eval_point_with_params)
 
 print(model.get_beta())
 print(mse(model, dataset_manager.get_dataset()))
