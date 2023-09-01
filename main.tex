@@ -1,0 +1,127 @@
+%! Author = kevin
+%! Date = 31/08/2023
+
+% Preamble
+\documentclass{report}
+
+% Packages
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage[usenames]{color}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{HTML}{C42043}
+\definecolor{backcolour}{HTML}{F2F2F2}
+\definecolor{bookColor}{cmyk}{0,0,0,0.90}
+\color{bookColor}
+
+\lstset{upquote=true}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{codepurple},
+    numberstyle=\numberstyle,
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=10pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+}
+\lstset{style=mystyle}
+
+\newcommand\numberstyle[1]{%
+    \footnotesize
+    \color{codegray}%
+    \ttfamily
+    \ifnum#1<10 0\fi#1 |%
+}
+
+\usepackage[hidelinks]{hyperref}
+
+% Document
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    {\scshape\Huge Linear Regression\par}
+    \vspace{0.5cm}
+    {\itshape\Large Laboratirio N°1 - Introduccion a Machine Learning \par}
+    \vspace{0.5cm}
+    {\Large Agosto 2023 \par}
+    \vspace{0.5cm}
+    {\includegraphics[width=0.5\textwidth]{latex/utec.jpg}\par}
+    \vfill
+    {\Large Integrantes: \par}
+    {\Large Juan Diego Castro Padilla\par}
+    {\Large Kevin Abraham Huaman Vega\par}
+    {\Large Juan Diego Prochazka Zegarra\par}
+    \vfill
+    %(100\%)
+    \vspace{0.5cm}
+    {\bfseries\LARGE Universidad de Ingenier\'ia y Tecnolog\'ia\par}
+    \vspace{0.5cm}
+    {\scshape\Large Facultad de Computaci\'on \par}
+    \vspace{0.5cm}
+    {\Large Docente: Arturo Deza\par}
+    \vspace{0.5cm}
+    {\Large 2023-2 \par}
+    \vspace{1.5cm}
+
+\end{titlepage}
+
+\tableofcontents
+
+\pagebreak
+
+\noindent
+
+    \chapter{Desarrollo}
+        \section{What is your dataset ?}
+            Nuestro dataset fue extraido de \href{https://www.kaggle.com}{kaggle.com}. El nombre del dataset es \textbf{Most Streamed Spotify Songs 2023}, y tiene como alcance principal proporcionar informacion sobre la plataforma que permitan encontrar insights entre los usuarios y el exito que llegan a alcanzar algunas canciones. El conjunto de atributos disponibles en el dataset son referentes al nombre de la cancion, el\los cantantes, fecha de lanzamiento, cantidad de reproducciones, cantidad de usuarios que han incluido la cancion en su playlist, entre otros.
+        \section{What is your regression problem?}
+            Queremos determinar si existe una relacion fuerte entre la cantidad de reproducciones de una cancion con la cantidad de usuarios que pusieron dicha cancion en su playlist, con la intencion de predecir la cantidad de usuarios que pondran una cancion en su playlist dado un numero de reproducciones. Nuestra hipotesis preliminar sugiere que mientras mas reproducciones tenga una cancion de en Spotify, mas personas decidan agregar dicha cancion en su playlist. Creemos que nuestra hipotesis tiene sentido logico puesto que generalmente los usuarios deciden poner una cancion en su playlist posterior a haberla escuchado (y que les haya agradado). Por lo tanto, si mas personas escuchan la cancion, creemos que hay chance de que le guste a mas personas y la agreguen a su playlist.
+        \section{How many data points are there in the dataset?}
+            Para este laboratorio vamos a trabajar con un subconjunto del dataset original, puesto que estamos reduciendo el scope de nuestro estudio a canciones actuales. Vamos a trabajar en el rango de canciones del 2021 al 2022. Esta reduccion nos deja con 521 puntos para analizar.
+        \section{What is the β term assuming a zero-th point intersection (no bias)}
+            $ \[\beta\] = 0.7371 $
+        \section{What is the bias term not assuming a zero-th point intersection (bias included)}
+            $ bias = 156.6146 $
+        \section{What are the number of independent variables (minimum 1, maximum 2)}
+            Estamos usando 1 variable independiente.
+        \section{What is the dependent variable?}
+            Nuestra variable dependiente es \textbf{in_spotify_playlists} que simboliza la cantidad de playlists donde una canci\'on est\'a inclu\'ida
+        \section{What are the unit of measurements for each variable(s)?}
+            La variable independiente, que es \textbf{streams} que simboliza cantidad de reproducciones de una canci\'on de Spotify, se mide en cientos de miles de reproducciones. Por otra parte, la variable dependiente \textbf{in_spotify_playlists}, que es la cantidad de playlists donde la cancion esta incluida, se mide solamente en cantidad de playlists.
+        \section{Please plot the raw data and a superimposing line on the data that passes through the origin. What is the mean square error (MSE)?}
+        \section{Please plot the raw data and a superimposing line on the data that does not pass through the origin. What is the mean square error (MSE)?}
+        \section{Repeat the regression line randomly 100 times.}
+    \chapter{Contribuciones}
+        \begin{itemize}
+            \item Juan Diego Castro Padilla:
+
+            Busqueda del dataset y creacion de las clases Dataset y BiasLinearModel.
+            \item Kevin Abraham Huaman Vega:
+
+            Elegir el nombre como llave primaria no trae ningún inconveniente, ya que este atributo para cada usuario debe ser único. Además de ello, la fecha y hora del registro es guardada en un atributo denominado \emph{fecha_hora_unido}.
+
+            \item Juan Diego Prochazka Zegarra:
+
+            Creacion de las clases LinearModel y StatisticalMeasures. Bootstrapping.
+
+            \end{itemize}
+    \chapter{Desarrollo}
+
+\end{document}
