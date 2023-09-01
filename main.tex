@@ -113,7 +113,7 @@
             Nuestra variable dependiente es \textbf{in\_spotify\_playlists} que simboliza la cantidad de playlists donde una canci\'on est\'a incluida
 
         \section{What are the unit of measurements for each variable(s)?}
-            La variable independiente, que es \textbf{streams} que simboliza la cantidad de reproducciones de una canci\'on de Spotify y se mide en cientos de miles de reproducciones. Por otra parte, la variable dependiente \textbf{in\_spotify\_playlists}, que es la cantidad de playlists donde la canci\'on esta incluida, se mide en unidades.
+            La variable independiente \textbf{streams}, que simboliza la cantidad de reproducciones de una canci\'on de Spotify, se mide en cientos de miles de reproducciones. Por otra parte, la variable dependiente \textbf{in\_spotify\_playlists}, que es la cantidad de playlists donde la canci\'on esta incluida, se mide en unidades.
 
         \section{Please plot the raw data and a superimposing line on the data that passes through the origin. What is the mean square error (MSE)?}
             {\includegraphics[width=0.9\textwidth]{latex/question9.png}\par} \\
@@ -169,7 +169,7 @@
             Busqueda del dataset y creaci\'on de las clases Dataset y BiasLinearModel.
             \item Kevin Abraham Huaman Vega:
 
-            An\'alisis y limpieza de la data para definir las variables a relacionar y redacci\'on del informe.
+            An\'alisis y limpieza de la data para definir las variables a relacionar, investigación y redacci\'on del informe.
 
             \item Juan Diego Prochazka Zegarra:
 
@@ -340,7 +340,7 @@
         "in_spotify_playlists")
     \end{lstlisting}
 
-    \subtitle{Grafica los datos superponiendo la linea en los datos que pasa por el origen. ¿Cual es el MSE?}
+    \subtitle{Grafica los datos superponiendo la l\'inea en los datos que pasa por el origen. ¿Cual es el MSE?}
     \begin{lstlisting}
     linear_model = LinearModel(dataset)
     linear_model.plot()
@@ -353,7 +353,7 @@
     # mse: 2280789.90594258 playlists^2
     \end{lstlisting}
 
-    \subtitle{Grafica los datos superponiendo la linea en los datos que no pasa por el origen. ¿Cual es el MSE?}
+    \subtitle{Grafica los datos superponiendo la l\'inea en los datos que no pasa por el origen. ¿Cual es el MSE?}
     \begin{lstlisting}
     bias_linear_model = BiasLinearModel(dataset)
     bias_linear_model.plot()
@@ -405,7 +405,7 @@
     \end{lstlisting}
 
     Nota:
-    Para una ejecucion del codigo anterior, los valores promedio de los modelos fueron los siguientes:
+    Para una ejecuci\'on del c\'odigo anterior, los valores promedio de los modelos fueron los siguientes:
 
    - Modelo sin bias: Beta = 0.7370598347655866
    - Modelo con bias: Beta = 0.7138273720487012, bias = 157.41307767546965.
@@ -423,7 +423,7 @@
 
 \chapter{Otros}
 \begin{enumerate}
-    \item No se utilizaron herramientas de IA, todo el codigo se encuentra adjuntado.
+    \item No se utilizaron herramientas de IA, todo el c\'odigo se encuentra adjuntado.
     \item Para visibilizar el trabajo completo junto a muestra de las contribuciones de cada uno de los participantes, dirigirse al siguiente \href{https://github.com/ByJuanDiego/linear-regression}{repositorio}
 \end{enumerate}
 
